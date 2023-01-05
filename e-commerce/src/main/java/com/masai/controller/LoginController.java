@@ -20,39 +20,43 @@ import com.Shopping.Services.LoginServices;
 public class LoginController {
 
 	@Autowired
-	private LoginServices lservices;
+	private LoginServices loginservices;
 	
 	@PostMapping("/sellerLogin")
 	public ResponseEntity<CurrentUserSession> sellerLoginHandler(@Valid @RequestBody Login login) throws LoginException{
 		
-		CurrentUserSession cus= lservices.sellerlogin(login);
+		CurrentUserSession cust = loginservices.sellerlogin(login);
 		
-		return new ResponseEntity<CurrentUserSession>(cus,HttpStatus.ACCEPTED);
-		
-	}
-	
-	@PostMapping("/customerLogin")
-	public ResponseEntity<CurrentUserSession> customerLoginHandler(@Valid @RequestBody Login login) throws LoginException{
-		
-		CurrentUserSession cus= lservices.customerlogin(login);
-		
-		return new ResponseEntity<CurrentUserSession>(cus,HttpStatus.ACCEPTED);
+		return new ResponseEntity<CurrentUserSession>(cust,HttpStatus.ACCEPTED);
 		
 	}
 	
 	@PostMapping("/adminLogin")
 	public ResponseEntity<CurrentUserSession> adminLoginHandler(@Valid @RequestBody Login login) throws LoginException{
 		
-		CurrentUserSession cus= lservices.adminlogin(login);
+		CurrentUserSession cust = loginservices.adminlogin(login);
 		
-		return new ResponseEntity<CurrentUserSession>(cus,HttpStatus.ACCEPTED);
+		return new ResponseEntity<CurrentUserSession>(cust,HttpStatus.ACCEPTED);
 		
 	}
+	
+	
+	
+	@PostMapping("/customerLogin")
+	public ResponseEntity<CurrentUserSession> customerLoginHandler(@Valid @RequestBody Login login) throws LoginException{
+		
+		CurrentUserSession cust= loginservices.customerlogin(login);
+		
+		return new ResponseEntity<CurrentUserSession>(cust,HttpStatus.ACCEPTED);
+		
+	}
+	
+	
 	
 	@DeleteMapping("/Logout")
 	public ResponseEntity<String> LogoutHandler(@RequestParam Integer id,@RequestParam String key) throws LoginException{
 		
-		String message= lservices.Logout(id, key);
+		String message= loginservices.Logout(id, key);
 		
 		return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
 	}
