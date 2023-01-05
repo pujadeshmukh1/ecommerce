@@ -35,7 +35,7 @@ An E-commerce REST API built over a span of 1 week. The API can perform all the 
 
 ## Installation & Run
 
-* Before running the API server, you should update the database config inside the [application.properties](https://github.com/pujadeshmukh1/ecommerce/blob/main/e-commerce/src/main/java/com/masai/ShopyApplication.java) file. 
+* Before running the API server, you should update the database config inside the [application.properties](https://github.com/pujadeshmukh1/ecommerce/blob/main/e-commerce/src/main/resources/application.properties) file. 
 * Update the port number, username and password as per your local database config.
 
 ```
