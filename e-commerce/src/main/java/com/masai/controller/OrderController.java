@@ -26,37 +26,53 @@ import com.masai.service.OrderService;
 public class OrderController {
 	
 	@Autowired
-	private OrderService os;
+	private OrderService orderservice;
 	
 	@PostMapping("/addOrder/{cartId}")
 	public ResponseEntity<Order> addOrder(@RequestBody Order order, @PathVariable("cartId") int cartId) throws OrderException, CartException {
-		Order o=os.addOrder(order, cartId);
-		return new ResponseEntity<Order>(o,HttpStatus.ACCEPTED);
+		
+		Order ord= orderservice.addOrder(order, cartId);
+		
+		return new ResponseEntity<Order>(ord,HttpStatus.ACCEPTED);
 	}
 
+	
 	@GetMapping("/viewOrder/{orderId}")
 	public ResponseEntity<Order> viewOrder(@PathVariable("orderId") int orderId) throws OrderException {
-		Order o=os.viewOrder(orderId);
-		return new ResponseEntity<Order>(o,HttpStatus.ACCEPTED);
+		
+		Order ord = orderservice.viewOrder(orderId);
+		
+		return new ResponseEntity<Order>(ord,HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/viewOrdersByDate/{startDate}/{endDate}")
 	public ResponseEntity<List<Order>> viewOrdersByDate(@PathVariable("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @PathVariable("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) throws OrderException {
-		List<Order> list=os.viewOrdersByDate(startDate, endDate);
+		
+		List<Order> list= orderservice.viewOrdersByDate(startDate, endDate);
+		
 		return new ResponseEntity<List<Order>>(list,HttpStatus.ACCEPTED);
 	}
+	
+	
+	@DeleteMapping("/deleteOrder/{orderId}")
+	public ResponseEntity<Order> deleteOrder(@PathVariable("orderId") int orderId) throws OrderException {
+		
+		Order ord = orderservice.deleteOrder(orderId);
+		
+		return new ResponseEntity<Order>(ord,HttpStatus.ACCEPTED);
+	}
+	
 
 	@PutMapping("/updateOrderStatus/{orderId}/{status}")
 	public ResponseEntity<Order> updateOrderStatus(@PathVariable("orderId") int orderId, @PathVariable("status") String status) throws OrderException {
-		Order o=os.updateOrderStatus(orderId, status);
-		return new ResponseEntity<Order>(o,HttpStatus.ACCEPTED);
+		
+		Order ord = orderservice.updateOrderStatus(orderId, status);
+		
+		return new ResponseEntity<Order>(ord,HttpStatus.ACCEPTED);
 	}
+	
 
-	@DeleteMapping("/deleteOrder/{orderId}")
-	public ResponseEntity<Order> deleteOrder(@PathVariable("orderId") int orderId) throws OrderException {
-		Order o=os.deleteOrder(orderId);
-		return new ResponseEntity<Order>(o,HttpStatus.ACCEPTED);
-	}
+	
 
 
 }
