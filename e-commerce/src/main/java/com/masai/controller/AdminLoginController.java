@@ -22,14 +22,22 @@ public class AdminLoginController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<String> adminLogin(@RequestBody Login dto) throws LoginException{
+		
 		String res=al.adminLog(dto);
+		
 		return new ResponseEntity<String>(res,HttpStatus.ACCEPTED);
+		
 	}
+	
+	
 	
 	@PostMapping("/logout")
 	public ResponseEntity<String> adminLogout(@RequestParam(required = false)String key) throws LoginException{
+		
 		String res=al.adminLogOut(key);
+		
 		return new ResponseEntity<String>(res,HttpStatus.ACCEPTED);
+		
 	}
 
 }
