@@ -16,9 +16,7 @@ public class Admin {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer adminId;
 	
-	
 	private String adminMobile;
-	
 	
 	private String adminEmail;
 	
