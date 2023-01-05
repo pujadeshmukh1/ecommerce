@@ -14,6 +14,7 @@ import com.masai.model.Bill;
 public interface BillRepo extends JpaRepository<Bill, Integer>{
 	
 	@Query(value = "from Bill b where billDate BETWEEN :startDate AND :endDate")
+	
 	public List<Bill> billBetweenDate(@Param("startDate")LocalDate startDate,@Param("endDate")LocalDate endDate);
 
 }
