@@ -27,6 +27,8 @@ public class GlobalExceptionHandler {
 		
 	}
 	
+	
+	
 	@ExceptionHandler(LoginException.class)
 	public ResponseEntity<ExceptionDTO> loginExceptionHandler(LoginException e, WebRequest wr){
 		
@@ -38,6 +40,8 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ExceptionDTO>(err, HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	
 	
 	@ExceptionHandler(ProductException.class)
 	public ResponseEntity<ExceptionDTO> productExceptionHandler(ProductException e, WebRequest wr){
@@ -51,6 +55,8 @@ public class GlobalExceptionHandler {
 		
 	}
 	
+	
+	
 	@ExceptionHandler(OrderException.class)
 	public ResponseEntity<ExceptionDTO> orderExceptionHandler(OrderException e, WebRequest wr){
 		
@@ -62,6 +68,8 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ExceptionDTO>(err, HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	
 	
 	@ExceptionHandler(CustomerException.class)
 	public ResponseEntity<ExceptionDTO> customerExceptionHandler(CustomerException e, WebRequest wr){
@@ -75,6 +83,8 @@ public class GlobalExceptionHandler {
 		
 	}
 	
+	
+	
 	@ExceptionHandler(CategoryException.class)
 	public ResponseEntity<ExceptionDTO> categoryExceptionHandler(CategoryException e, WebRequest wr){
 		
@@ -87,6 +97,8 @@ public class GlobalExceptionHandler {
 		
 	}
 	
+	
+	
 	@ExceptionHandler(CartException.class)
 	public ResponseEntity<ExceptionDTO> cartExceptionHandler(CartException e, WebRequest wr){
 		
@@ -98,6 +110,8 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ExceptionDTO>(err, HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	
 	
 	@ExceptionHandler(BillException.class)
 	public ResponseEntity<ExceptionDTO> billExceptionHandler(BillException e, WebRequest wr){
