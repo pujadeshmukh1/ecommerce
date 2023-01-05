@@ -24,41 +24,63 @@ import com.masai.service.ProductService;
 public class ProductController {
 	
 	@Autowired
-	private ProductService ps;
+	private ProductService productservice;
 	
 	@PostMapping("/add/{categoryId}")
 	public ResponseEntity<Product> addProduct(@RequestBody Product product, @PathVariable("categoryId") int categoryId) throws ProductException, CategoryException {
-		Product p=ps.addProduct(product, categoryId);
-		return new ResponseEntity<Product>(p,HttpStatus.ACCEPTED);
+		
+		Product pro= productservice.addProduct(product, categoryId);
+		
+		return new ResponseEntity<Product>(pro,HttpStatus.ACCEPTED);
+	
 	}
+	
+	
 	
 	@GetMapping("/view/{productId}")
 	public ResponseEntity<Product> viewProduct(@PathVariable("productId") int productId) throws ProductException {
-		Product p=ps.viewProduct(productId);
-		return new ResponseEntity<Product>(p,HttpStatus.ACCEPTED);
+		
+		Product pro= productservice.viewProduct(productId);
+		
+		return new ResponseEntity<Product>(pro,HttpStatus.ACCEPTED);
 	}
+	
+	
 	
 	@GetMapping("/viewAllProduct")
 	public ResponseEntity<List<Product>> allProduct() throws ProductException {
-		List<Product>list=ps.allProduct();
+		
+		List<Product>list=productservice.allProduct();
+		
 		return new ResponseEntity<List<Product>>(list,HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/delete/{productId}")
-	public ResponseEntity<Product> removeProduct(@PathVariable("productId") int productId) throws ProductException {
-		Product p=ps.removeProduct(productId);
-		return new ResponseEntity<Product>(p,HttpStatus.ACCEPTED);
-	}
+	
 	
 	@PutMapping("/update")
 	public ResponseEntity<Product> updateProduct(@RequestBody Product product) throws ProductException {
-		Product p=ps.updateProduct(product);
-		return new ResponseEntity<Product>(p,HttpStatus.ACCEPTED);
+		
+		Product p=productservice.updateProduct(product);
+		
+		return new ResponseEntity<Product>(pro,HttpStatus.ACCEPTED);
 	}
+	
+	
+	
+	@DeleteMapping("/delete/{productId}")
+	public ResponseEntity<Product> removeProduct(@PathVariable("productId") int productId) throws ProductException {
+		
+		Product pro=productservice.removeProduct(productId);
+		
+		return new ResponseEntity<Product>(pro,HttpStatus.ACCEPTED);
+	}
+	
 	
 	@GetMapping("/productByName/{name}")
 	public ResponseEntity<List<Product>> productByName(@PathVariable("name") String name) throws ProductException {
-		List<Product>list=ps.productByName(name);
+		
+		List<Product>list=productservice.productByName(name);
+		
 		return new ResponseEntity<List<Product>>(list,HttpStatus.ACCEPTED);
 	}
 	
