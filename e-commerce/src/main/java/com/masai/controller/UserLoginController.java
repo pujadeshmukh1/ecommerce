@@ -18,18 +18,26 @@ import com.masai.service.CustomerLogin;
 public class UserLoginController {
 	
 	@Autowired
-	private CustomerLogin cl;
+	private CustomerLogin customerlogin;
 	
 	@PostMapping("/login")
 	public ResponseEntity<String> userLogin(@RequestBody Login dto) throws LoginException{
-		String res=cl.logIntoAccount(dto);
-		return new ResponseEntity<String>(res,HttpStatus.ACCEPTED);
+		
+		String lonin= customerlogin.logIntoAccount(dto);
+		
+		return new ResponseEntity<String>(lonin,HttpStatus.ACCEPTED);
+		
 	}
+	
+	
 	
 	@PostMapping("/logout")
 	public ResponseEntity<String> userLogout(@RequestParam(required = false)String key) throws LoginException{
-		String res=cl.logOutFromAccount(key);
-		return new ResponseEntity<String>(res,HttpStatus.ACCEPTED);
+		
+		String lonin= customerlogin.logOutFromAccount(key);
+		
+		return new ResponseEntity<String>(lonin,HttpStatus.ACCEPTED);
+		
 	}
 
 }
