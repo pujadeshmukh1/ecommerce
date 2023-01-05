@@ -23,37 +23,55 @@ import com.masai.service.CategoryService;
 public class CategoryController {
 	
 	@Autowired
-	private CategoryService cs;
+	private CategoryService categoryservice;
+	
+	
 	
 	@PostMapping("/add")
 	public ResponseEntity<Category> addCategory(@RequestBody Category category) throws CategoryException {
-		Category c=cs.addCategory(category);
-		return new ResponseEntity<Category>(c,HttpStatus.ACCEPTED);
+		
+		Category category=categoryservice.addCategory(category);
+	
+		return new ResponseEntity<Category>(category,HttpStatus.ACCEPTED);
+	
 	}
+	
 	
 	@GetMapping("/view/{id}")
 	public ResponseEntity<Category> viewCategory(@PathVariable("id") int categoryId) throws CategoryException {
-		Category c=cs.viewCategory(categoryId);
-		return new ResponseEntity<Category>(c,HttpStatus.ACCEPTED);
+		
+		Category category = categoryservice.viewCategory(categoryId);
+		
+		return new ResponseEntity<Category>(category,HttpStatus.ACCEPTED);
+		
+	}
+	
+	
+	@GetMapping("/viewAll")
+	public ResponseEntity<List<Category>> allCategory() throws CategoryException {
+		
+		List<Category> category = categoryservice.allCategory();
+		
+		return new ResponseEntity<List<Category>>(category,HttpStatus.ACCEPTED);
 		
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Category> deleteCategory(@PathVariable("id") int categoryId) throws CategoryException {
-		Category c=cs.deleteCategory(categoryId);
-		return new ResponseEntity<Category>(c,HttpStatus.ACCEPTED);
+		
+		Category category = categoryservice.deleteCategory(categoryId);
+		
+		return new ResponseEntity<Category>(category,HttpStatus.ACCEPTED);
+		
 	}
 	
-	@GetMapping("/viewAll")
-	public ResponseEntity<List<Category>> allCategory() throws CategoryException {
-		List<Category>c=cs.allCategory();
-		return new ResponseEntity<List<Category>>(c,HttpStatus.ACCEPTED);
-	}
 	
 	@GetMapping("/viewProductByCategory/{id}")
 	public ResponseEntity<List<Product>> productByCategory(@PathVariable("id") int categoryId) throws CategoryException {
-		List<Product>list=cs.productByCategory(categoryId);
-		return new ResponseEntity<List<Product>>(list,HttpStatus.ACCEPTED);
+		
+		List<Product> category = categoryservice.productByCategory(categoryId);
+		
+		return new ResponseEntity<List<Product>>(category,HttpStatus.ACCEPTED);
 	}
 
 }
